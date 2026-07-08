@@ -3,8 +3,6 @@
    ====================================================== */
 
 import * as THREE from 'three';
-import { FontLoader } from 'three/addons/loaders/FontLoader.js';
-import { TextGeometry } from 'three/addons/geometries/TextGeometry.js';
 
 const container = document.getElementById('three-canvas-container');
 const scene = new THREE.Scene();
@@ -30,52 +28,6 @@ scene.add(pointLight);
 const dirLight = new THREE.DirectionalLight(0xbd00ff, 0.8);
 dirLight.position.set(20, 10, -10);
 scene.add(dirLight);
-
-// === 3D Text ===
-let textMesh;
-const textGroup = new THREE.Group();
-scene.add(textGroup);
-
-const loader = new FontLoader();
-loader.load('https://cdn.jsdelivr.net/npm/three@0.160.0/examples/fonts/helvetiker_bold.typeface.json', function (font) {
-    const isPhone = window.innerWidth <= 480;
-    const isTablet = window.innerWidth <= 768;
-    const size = isPhone ? 1.8 : (isTablet ? 3.0 : 6);
-
-    const textGeo = new TextGeometry('DevManyPB', {
-        font: font,
-        size: size,
-        height: 1.2,
-        curveSegments: 8,  // reduced from 12
-        bevelEnabled: true,
-        bevelThickness: 0.15,
-        bevelSize: 0.08,
-        bevelOffset: 0,
-        bevelSegments: 3   // reduced from 5
-    });
-
-    textGeo.computeBoundingBox();
-    const centerOffset = -0.5 * (textGeo.boundingBox.max.x - textGeo.boundingBox.min.x);
-    textGeo.translate(centerOffset, 2, 0);
-
-    const matFront = new THREE.MeshStandardMaterial({
-        color: 0x00d4ff,
-        metalness: 0.4,
-        roughness: 0.15,
-        emissive: 0x00d4ff,
-        emissiveIntensity: 0.35
-    });
-    const matSide = new THREE.MeshStandardMaterial({
-        color: 0xbd00ff,
-        metalness: 0.7,
-        roughness: 0.25,
-        emissive: 0xbd00ff,
-        emissiveIntensity: 0.5
-    });
-
-    textMesh = new THREE.Mesh(textGeo, [matFront, matSide]);
-    textGroup.add(textMesh);
-});
 
 // === Floating wireframe shapes (reduced count) ===
 const shapesGroup = new THREE.Group();
@@ -188,16 +140,6 @@ function animate3D() {
     // Removed throttle so particles animate globally across all sections
 
     const time = clock.getElapsedTime();
-    const targetX = mouseX * 0.5;
-    const targetY = mouseY * 0.5;
-
-    // Animate 3D text
-    if (textMesh) {
-        textGroup.rotation.y += 0.04 * (targetX - textGroup.rotation.y);
-        textGroup.rotation.x += 0.04 * (targetY - textGroup.rotation.x);
-        textGroup.position.y = (Math.sin(time * 1.2) * 0.6) + (cachedScrollY * 0.025);
-    }
-
     // Slow particle rotation
     particlesMesh.rotation.y = time * 0.02;
     particlesMesh.rotation.x = time * 0.008;

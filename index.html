@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="DevManyPB — Roblox Developer & UI Designer with 8+ years of experience building immersive game systems and futuristic interfaces.">
+    <meta property="og:title" content="DevManyPB | Portfolio">
+    <meta property="og:description" content="Roblox Developer & UI Designer — 8+ años creando sistemas inmersivos e interfaces futuristas.">
+    <meta property="og:image" content="https://tr.rbxcdn.com/180DAY-ed9f582d5492b827616099c050e42f03/768/432/Image/Png/noFilter">
+    <meta property="og:url" content="https://devmanypb.dev">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="DevManyPB | Portfolio">
+    <meta name="twitter:description" content="Roblox Developer & UI Designer — 8+ años creando sistemas inmersivos e interfaces futuristas.">
+    <meta name="twitter:image" content="https://tr.rbxcdn.com/180DAY-ed9f582d5492b827616099c050e42f03/768/432/Image/Png/noFilter">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect x='5' y='5' width='90' height='90' rx='15' fill='%2300f3ff'/%3E%3Crect x='25' y='25' width='50' height='50' rx='5' fill='%23030306'/%3E%3C/svg%3E">
+    <title>DevManyPB | Portfolio</title>
+
+    <!-- Preconnect for speed -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+
+    <!-- Fonts & Icons -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Space+Grotesk:wght@300;400;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Three.js Import Map -->
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+                "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+            }
+        }
+    </script>
+
+    <!-- Single external stylesheet -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <noscript>
+        <div style="position:fixed;inset:0;background:#030306;color:#fff;display:flex;align-items:center;justify-content:center;z-index:99999;font-family:sans-serif;text-align:center;padding:2rem;">
+            <div>
+                <h1 style="font-size:2rem;margin-bottom:1rem;">DevManyPB</h1>
+                <p style="color:#a0a5b8;">JavaScript is required to view this portfolio. Please enable JavaScript in your browser.</p>
+            </div>
+        </div>
+    </noscript>
+
+    <!-- Custom Cursor -->
+    <div class="cursor-dot"></div>
+    <div class="cursor-circle"></div>
+
+    <!-- 3D Background Canvas -->
+    <div id="three-canvas-container"></div>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+
+        <div class="nav-links">
+            <a href="#projects" class="hover-target" data-i18n="nav_projects" aria-label="Proyectos">Proyectos</a>
+            <a href="#about" class="hover-target" data-i18n="nav_about" aria-label="Sobre mí">Sobre Mí</a>
+            <a href="#ui-design" class="hover-target" data-i18n="nav_ui" aria-label="Diseño UI">UI Design</a>
+            <a href="#systems" class="hover-target" data-i18n="nav_systems" aria-label="Sistemas">Sistemas</a>
+            <button class="lang-btn hover-target" id="langToggle" aria-label="Cambiar idioma">EN</button>
+        </div>
+        <div class="hamburger hover-target" aria-label="Menú de navegación">
+            <span></span><span></span><span></span>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header id="hero">
+        <div class="hero-content">
+            <div class="hero-spacer"></div>
+            <h1 class="hero-title gsap-hero">DevManyPB</h1>
+            <h2 class="hero-subtitle" id="typewriter"></h2>
+            <div class="hero-socials gsap-hero">
+                <a href="https://x.com/DevManyPB" target="_blank" rel="noopener noreferrer" class="hover-target" aria-label="Twitter / X">
+                    <i class="fa-brands fa-x-twitter"></i> Twitter
+                </a>
+                <a href="https://www.roblox.com/es/users/539504008/profile" target="_blank" rel="noopener noreferrer" class="hover-target" aria-label="Perfil de Roblox">
+                    <i class="fa-solid fa-gamepad"></i> Roblox
+                </a>
+            </div>
+            <a href="#projects" class="btn-primary gsap-hero hover-target" data-i18n="hero_btn">Ver mi trabajo</a>
+        </div>
+        <!-- Scroll indicator -->
+        <div class="scroll-indicator">
+            <div class="scroll-line"></div>
+        </div>
+    </header>
+
+    <!-- Image Lightbox Modal -->
+    <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Visor de imágenes">
+        <button class="lightbox-close" id="lightbox-close" aria-label="Cerrar visor"><i class="fa-solid fa-xmark"></i></button>
+        <button class="lightbox-prev" id="lightbox-prev" aria-label="Imagen anterior"><i class="fa-solid fa-chevron-left"></i></button>
+        <button class="lightbox-next" id="lightbox-next" aria-label="Siguiente imagen"><i class="fa-solid fa-chevron-right"></i></button>
+        <div class="lightbox-content">
+            <img id="lightbox-img" src="" alt="">
+        </div>
+        <div class="lightbox-counter" id="lightbox-counter"></div>
+    </div>
+
+    <!-- Video Modal -->
+    <div class="video-modal" id="video-modal" role="dialog" aria-modal="true" aria-label="Reproductor de video">
+        <button class="video-modal-close" id="video-modal-close" aria-label="Cerrar video"><i class="fa-solid fa-xmark"></i></button>
+        <div class="video-modal-content">
+            <div class="modal-loader" id="modal-loader"><i class="fa-solid fa-circle-notch fa-spin"></i></div>
+            <iframe id="video-modal-iframe" class="video-iframe" src="" allow="autoplay" allowfullscreen></iframe>
+        </div>
+    </div>
+
+
+
+    <!-- About Me -->
+    <section id="about">
+        <h2 class="section-title title-anim gsap-reveal" data-i18n="about_title">Sobre Mí</h2>
+        <div class="about-grid">
+            <div class="about-text gsap-reveal">
+                <p data-i18n="about_p1">Soy un desarrollador y diseñador de interfaces especializado en el ecosistema de
+                    <strong>Roblox Studio</strong>. Mi enfoque combina la lógica robusta de sistemas complejos con
+                    estéticas visuales de alto impacto.
+                </p>
+                <p data-i18n="about_p2">A lo largo de mi carrera, he creado soluciones que no solo funcionan
+                    impecablemente a nivel de rendimiento, sino que también ofrecen una experiencia de usuario
+                    inmersiva, limpia y futurista.</p>
+            </div>
+            <div class="about-stats gsap-reveal hover-target">
+                <div class="stat-number" id="years-counter">0</div>
+                <div class="stat-label" data-i18n="about_years">Años de Experiencia</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Projects -->
+    <section id="projects">
+        <h2 class="section-title title-anim gsap-reveal" data-i18n="projects_title">Proyectos Destacados</h2>
+        <div class="projects-grid">
+            <div class="project-card gsap-reveal">
+                <img src="https://tr.rbxcdn.com/180DAY-91f90e4f749f741aa02611bbc5b9b715/768/432/Image/Png/noFilter" alt="The Disaster"
+                    class="project-img hover-target" loading="lazy">
+                <div class="project-info">
+                    <h3 class="project-title">The Disaster</h3>
+                    <p class="project-desc" data-i18n="desc_disaster">Juego de supervivencia y desastres naturales.
+                        Enfréntate a las fuerzas de la naturaleza con sistemas avanzados y eventos dinámicos.</p>
+                    <a href="https://www.roblox.com/es/games/15846031887/The-Disaster" target="_blank" rel="noopener noreferrer"
+                        class="btn-small hover-target"><i class="fa-solid fa-play"></i> <span
+                            data-i18n="btn_play">Jugar</span></a>
+                </div>
+            </div>
+            <div class="project-card gsap-reveal">
+                <img src="https://tr.rbxcdn.com/180DAY-ed9f582d5492b827616099c050e42f03/768/432/Image/Png/noFilter"
+                    alt="Detective Jack" class="project-img hover-target" loading="lazy">
+                <div class="project-info">
+                    <h3 class="project-title">Detective Jack</h3>
+                    <p class="project-desc" data-i18n="desc_detective">Juego de misterio en un mundo digital futurista.
+                        Resuelve casos imposibles como agente de ciberseguridad atrapado en una simulación infectada por
+                        un virus.</p>
+                    <a href="https://www.roblox.com/es/games/139773744140396/Detective-Jack" target="_blank" rel="noopener noreferrer"
+                        class="btn-small hover-target"><i class="fa-solid fa-play"></i> <span
+                            data-i18n="btn_play">Jugar</span></a>
+                </div>
+            </div>
+            <div class="project-card gsap-reveal">
+                <img src="https://tr.rbxcdn.com/180DAY-5ca116c62086a84058797497740726b0/768/432/Image/Png/noFilter"
+                    alt="Evolve Simulator" class="project-img hover-target" loading="lazy">
+                <div class="project-info">
+                    <h3 class="project-title">Evolve Simulator</h3>
+                    <p class="project-desc" data-i18n="desc_evolve">Simulador de evolución: come orbes, crece, derrota
+                        jugadores y usa pociones. Sistema de progresión con guardado automático.</p>
+                    <a href="https://www.roblox.com/es/games/116255695608356/Evolve-Simulator-RELEASE" target="_blank" rel="noopener noreferrer"
+                        class="btn-small hover-target"><i class="fa-solid fa-play"></i> <span
+                            data-i18n="btn_play">Jugar</span></a>
+                </div>
+            </div>
+            <div class="project-card gsap-reveal">
+                <img src="https://tr.rbxcdn.com/180DAY-b606802bc03ff13c86c035e282e3de66/768/432/Image/Png/noFilter"
+                    alt="Blox Nights" class="project-img hover-target" loading="lazy">
+                <div class="project-info">
+                    <h3 class="project-title">Blox Nights [FNAF]</h3>
+                    <p class="project-desc" data-i18n="desc_blox">Experiencia de terror inspirada en FNAF. Programación
+                        de sistemas, animatrónicos y mecánicas de supervivencia inmersivas.</p>
+                    <a href="https://www.roblox.com/es/games/5855555281/Blox-Nights" target="_blank" rel="noopener noreferrer"
+                        class="btn-small hover-target"><i class="fa-solid fa-play"></i> <span
+                            data-i18n="btn_play">Jugar</span></a>
+                </div>
+            </div>
+            <div class="project-card gsap-reveal">
+                <img src="https://tr.rbxcdn.com/180DAY-5d586bad8dc36c11d986308969549c7b/768/432/Image/Png/noFilter"
+                    alt="EcoBuilder" class="project-img hover-target" loading="lazy">
+                <div class="project-info">
+                    <h3 class="project-title">EcoBuilder</h3>
+                    <p class="project-desc" data-i18n="desc_eco">Juego de construcción en isla con recolección de
+                        recursos, sistema de progresión y desbloqueo de estructuras. Evento oficial de Roblox.</p>
+                    <a href="https://www.roblox.com/es/games/13683998993/EcoBuilder" target="_blank" rel="noopener noreferrer"
+                        class="btn-small hover-target"><i class="fa-solid fa-play"></i> <span
+                            data-i18n="btn_play">Jugar</span></a>
+                </div>
+            </div>
+            <div class="project-card gsap-reveal">
+                <img src="https://tr.rbxcdn.com/180DAY-da2c4d23594181cd003ee653e3b92d04/768/432/Image/Png/noFilter"
+                    alt="Obby Dificult" class="project-img hover-target" loading="lazy">
+                <div class="project-info">
+                    <h3 class="project-title">Obby Dificult</h3>
+                    <p class="project-desc" data-i18n="desc_obby">Obby de 102 etapas con sistema de trails, rebirth y
+                        multiplicadores de monedas. Desafía tus habilidades de parkour.</p>
+                    <a href="https://www.roblox.com/es/games/14025760230/Obby-Dificult" target="_blank" rel="noopener noreferrer"
+                        class="btn-small hover-target"><i class="fa-solid fa-play"></i> <span
+                            data-i18n="btn_play">Jugar</span></a>
+                </div>
+            </div>
+            <div class="project-card gsap-reveal">
+                <img src="https://tr.rbxcdn.com/180DAY-1901c9a822f1ae9c270ea29f7558ac26/768/432/Image/Png/noFilter"
+                    alt="Save Christmas" class="project-img hover-target" loading="lazy">
+                <div class="project-info">
+                    <h3 class="project-title">Save Christmas</h3>
+                    <p class="project-desc" data-i18n="desc_xmas">Obby navideño con historia: un elfo ha secuestrado a
+                        Santa. Derrota al villano y restaura la Navidad en el Polo Norte.</p>
+                    <a href="https://www.roblox.com/es/games/15683794655/Save-Christmas" target="_blank" rel="noopener noreferrer"
+                        class="btn-small hover-target"><i class="fa-solid fa-play"></i> <span
+                            data-i18n="btn_play">Jugar</span></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- UI Design Gallery -->
+    <section id="ui-design">
+        <h2 class="section-title title-anim gsap-reveal" data-i18n="ui_title">UI Design</h2>
+        <div class="ui-grid">
+            <div class="ui-card gsap-reveal hover-target">
+                <img src="img/ui-1.png" alt="Roblox Game HUD Design" loading="lazy">
+                <div class="ui-card-overlay"><i class="fa-solid fa-expand"></i></div>
+            </div>
+            <div class="ui-card gsap-reveal hover-target">
+                <img src="img/ui-2.png" alt="Roblox Inventory System" loading="lazy">
+                <div class="ui-card-overlay"><i class="fa-solid fa-expand"></i></div>
+            </div>
+            <div class="ui-card gsap-reveal hover-target">
+                <img src="img/ui-3.png" alt="Roblox Shop Interface" loading="lazy">
+                <div class="ui-card-overlay"><i class="fa-solid fa-expand"></i></div>
+            </div>
+            <div class="ui-card gsap-reveal hover-target">
+                <img src="img/ui-4.png" alt="Roblox Combat Ability Bar" loading="lazy">
+                <div class="ui-card-overlay"><i class="fa-solid fa-expand"></i></div>
+            </div>
+            <div class="ui-card gsap-reveal hover-target">
+                <img src="img/ui-5.png" alt="Roblox Main Menu" loading="lazy">
+                <div class="ui-card-overlay"><i class="fa-solid fa-expand"></i></div>
+            </div>
+            <div class="ui-card gsap-reveal hover-target">
+                <img src="img/ui-6.png" alt="Roblox Settings Panel" loading="lazy">
+                <div class="ui-card-overlay"><i class="fa-solid fa-expand"></i></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Systems / Programming -->
+    <section id="systems">
+        <h2 class="section-title title-anim gsap-reveal" data-i18n="systems_title">Sistemas Core</h2>
+        <div class="videos-grid">
+            <div class="video-container gsap-reveal">
+                <div class="video-wrapper hover-target"
+                    data-video-id="15qXpzE7ZfucNghlzeXHEVBO6ZUvNWyYH">
+                    <img src="https://drive.google.com/thumbnail?id=15qXpzE7ZfucNghlzeXHEVBO6ZUvNWyYH&sz=w800"
+                        alt="System Demo 1" loading="lazy">
+                    <div class="video-overlay"><i class="fa-solid fa-play"></i></div>
+                </div>
+                <h3 class="video-title" data-i18n="sys_1">Sistema Slide</h3>
+            </div>
+            <div class="video-container gsap-reveal">
+                <div class="video-wrapper hover-target"
+                    data-video-id="1gJIaFaSHDohU0bZU_i5Wmnck7NLHmDDG">
+                    <img src="https://drive.google.com/thumbnail?id=1gJIaFaSHDohU0bZU_i5Wmnck7NLHmDDG&sz=w800"
+                        alt="System Demo 2" loading="lazy">
+                    <div class="video-overlay"><i class="fa-solid fa-play"></i></div>
+                </div>
+                <h3 class="video-title" data-i18n="sys_2">Sistema de combate</h3>
+            </div>
+            <div class="video-container gsap-reveal">
+                <div class="video-wrapper hover-target"
+                    data-video-id="13wCS6BjKqTd7RjO01qVxivB_AEnwtIPk">
+                    <img src="https://drive.google.com/thumbnail?id=13wCS6BjKqTd7RjO01qVxivB_AEnwtIPk&sz=w800"
+                        alt="System Demo 3" loading="lazy">
+                    <div class="video-overlay"><i class="fa-solid fa-play"></i></div>
+                </div>
+                <h3 class="video-title" data-i18n="sys_3">Sistema de primera persona</h3>
+            </div>
+            <div class="video-container gsap-reveal">
+                <div class="video-wrapper hover-target"
+                    data-video-id="1KCHGd2ewUzS4HBXpAjXWKrajFucTluYf">
+                    <img src="https://drive.google.com/thumbnail?id=1KCHGd2ewUzS4HBXpAjXWKrajFucTluYf&sz=w800"
+                        alt="System Demo 4" loading="lazy">
+                    <div class="video-overlay"><i class="fa-solid fa-play"></i></div>
+                </div>
+                <h3 class="video-title" data-i18n="sys_4">Sistema de cartas</h3>
+            </div>
+            <div class="video-container gsap-reveal">
+                <div class="video-wrapper hover-target"
+                    data-video-id="1dHr_O5rw0HlcczaEMaS3hMWA2xwyoGXn">
+                    <img src="https://drive.google.com/thumbnail?id=1dHr_O5rw0HlcczaEMaS3hMWA2xwyoGXn&sz=w800"
+                        alt="System Demo 5" loading="lazy">
+                    <div class="video-overlay"><i class="fa-solid fa-play"></i></div>
+                </div>
+                <h3 class="video-title" data-i18n="sys_5">Sistema spawm + recoleccion</h3>
+            </div>
+            <div class="video-container gsap-reveal">
+                <div class="video-wrapper hover-target"
+                    data-video-id="1cuy-klTMv7APvnBRoSNULD-p30dUOxiD">
+                    <img src="https://drive.google.com/thumbnail?id=1cuy-klTMv7APvnBRoSNULD-p30dUOxiD&sz=w800"
+                        alt="System Demo 6" loading="lazy">
+                    <div class="video-overlay"><i class="fa-solid fa-play"></i></div>
+                </div>
+                <h3 class="video-title" data-i18n="sys_6">Bola de fuego</h3>
+            </div>
+        </div>
+    </section>
+
+    <!-- Awards -->
+    <section id="awards">
+        <h2 class="section-title title-anim gsap-reveal" data-i18n="awards_title">Logros</h2>
+        <div class="awards-grid">
+            <div class="award-card gsap-reveal hover-target">
+                <img class="award-icon"
+                    src="https://tr.rbxcdn.com/180DAY-1f99300c9d923ca8530b31193ae74764/420/420/FaceAccessory/Png/noFilter"
+                    alt="Achievement Medal">
+                <div class="award-info">
+                    <h3 class="award-title">Achievement Medal</h3>
+                    <p class="award-desc" data-i18n="awd_medal">Medalla al logro — reconocimiento oficial por
+                        contribuciones destacadas en la plataforma Roblox.</p>
+                    <a href="https://www.roblox.com/es/catalog/6589085795/Achievement-Medal" target="_blank" rel="noopener noreferrer"
+                        class="award-link" data-i18n="awd_btn">Ver en Roblox <i
+                            class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                </div>
+            </div>
+            <div class="award-card gsap-reveal hover-target">
+                <img class="award-icon"
+                    src="https://tr.rbxcdn.com/180DAY-49994392f19ce0a5bc9aad4f1ad0fd88/420/420/WaistAccessory/Png/noFilter"
+                    alt="Performance Keychain">
+                <div class="award-info">
+                    <h3 class="award-title">Performance Keychain</h3>
+                    <p class="award-desc" data-i18n="awd_keychain">Llavero del rendimiento — premio por excelencia
+                        técnica y optimización en desarrollo de experiencias.</p>
+                    <a href="https://www.roblox.com/es/catalog/8835792701/Performance-Keychain" target="_blank" rel="noopener noreferrer"
+                        class="award-link" data-i18n="awd_btn">Ver en Roblox <i
+                            class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                </div>
+            </div>
+            <div class="award-card gsap-reveal hover-target">
+                <img class="award-icon"
+                    src="https://tr.rbxcdn.com/180DAY-11093bb660b00fed79443f919b820cf8/420/420/Hat/Png/noFilter"
+                    alt="Crown of Knowledge">
+                <div class="award-info">
+                    <h3 class="award-title">Crown of Knowledge</h3>
+                    <p class="award-desc" data-i18n="awd_crown">Corona del conocimiento — distinción por dominio técnico
+                        y expertise en el ecosistema de desarrollo Roblox.</p>
+                    <a href="https://www.roblox.com/es/catalog/4750565659/Crown-of-Knowledge" target="_blank" rel="noopener noreferrer"
+                        class="award-link" data-i18n="awd_btn">Ver en Roblox <i
+                            class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+        <h2 class="section-title title-anim gsap-reveal" data-i18n="contact_title">Contacto</h2>
+        <div class="contact-container">
+            <div class="contact-info gsap-reveal">
+                <a href="https://discord.com/users/devmany" class="contact-item hover-target">
+                    <i class="fa-brands fa-discord"></i>
+                    <div><strong>Discord</strong>.devmany</div>
+                </a>
+                <a href="https://x.com/DevManyPB" target="_blank" rel="noopener noreferrer" class="contact-item hover-target">
+                    <i class="fa-brands fa-x-twitter"></i>
+                    <div><strong>Twitter / X</strong>@DevManyPB</div>
+                </a>
+                <a href="https://www.roblox.com/es/users/539504008/profile" target="_blank" rel="noopener noreferrer"
+                    class="contact-item hover-target">
+                    <i class="fa-solid fa-gamepad"></i>
+                    <div><strong>Roblox</strong>DevManyPB</div>
+                </a>
+            </div>
+            <form class="contact-form gsap-reveal" id="contact-form" action="#" method="POST" novalidate>
+                <div class="form-group hover-target">
+                    <input type="text" name="name" placeholder="Tu Nombre" data-i18n-ph="form_name" required aria-label="Tu nombre">
+                </div>
+                <div class="form-group hover-target">
+                    <input type="email" name="email" placeholder="Tu Email" data-i18n-ph="form_email" required aria-label="Tu correo electrónico">
+                </div>
+                <div class="form-group hover-target">
+                    <textarea name="message" placeholder="Tu Mensaje" data-i18n-ph="form_msg" required aria-label="Tu mensaje"></textarea>
+                </div>
+                <button type="submit" class="submit-btn hover-target" data-i18n="form_btn">Enviar Mensaje</button>
+                <div class="form-status" id="form-status"></div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-content">
+            <a href="#" class="nav-logo hover-target">DevMany<span>PB</span></a>
+            <p class="footer-copy">&copy; <span id="year">2024</span> DevManyPB. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Project Modal -->
+    <div class="project-modal" id="project-modal" role="dialog" aria-modal="true" aria-label="Detalles del proyecto">
+        <button class="project-modal-close hover-target" id="project-modal-close" aria-label="Cerrar proyecto"><i
+                class="fa-solid fa-xmark"></i></button>
+        <div class="project-modal-content">
+            <div class="pm-image-wrapper">
+                <img id="pm-img" src="" alt="Project Image">
+            </div>
+            <div class="pm-info">
+                <h2 id="pm-title">Project Title</h2>
+                <p id="pm-desc">Project Description</p>
+                <a id="pm-link" href="#" target="_blank" rel="noopener noreferrer" class="btn-primary hover-target"
+                    style="align-self: flex-start;"><i class="fa-solid fa-play"></i> <span data-i18n="btn_play">Jugar en
+                        Roblox</span></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Code Blocks (Lua background effect) -->
+    <div class="code-blocks-canvas">
+        <div class="code-block" id="code-block-1" style="right:3%;top:22%;--rot:-5deg;">
+            <div class="code-block-inner">
+                <div class="code-block-header">
+                    <span class="code-dot red"></span>
+                    <span class="code-dot yellow"></span>
+                    <span class="code-dot green"></span>
+                    <span class="code-filename">init.lua</span>
+                </div>
+                <div class="code-block-body">
+                    <code id="code-content-1"></code><span class="code-cursor" id="code-cursor-1">|</span>
+                </div>
+            </div>
+        </div>
+        <div class="code-block" id="code-block-2" style="left:2%;bottom:15%;--rot:4deg;">
+            <div class="code-block-inner">
+                <div class="code-block-header">
+                    <span class="code-dot red"></span>
+                    <span class="code-dot yellow"></span>
+                    <span class="code-dot green"></span>
+                    <span class="code-filename">combat.lua</span>
+                </div>
+                <div class="code-block-body">
+                    <code id="code-content-2"></code><span class="code-cursor" id="code-cursor-2">|</span>
+                </div>
+            </div>
+        </div>
+        <div class="code-block" id="code-block-3" style="right:4%;bottom:30%;--rot:-8deg;">
+            <div class="code-block-inner">
+                <div class="code-block-header">
+                    <span class="code-dot red"></span>
+                    <span class="code-dot yellow"></span>
+                    <span class="code-dot green"></span>
+                    <span class="code-filename">builder.lua</span>
+                </div>
+                <div class="code-block-body">
+                    <code id="code-content-3"></code><span class="code-cursor" id="code-cursor-3">|</span>
+                </div>
+            </div>
+        </div>
+        <div class="code-block" id="code-block-4" style="left:3%;top:40%;--rot:6deg;">
+            <div class="code-block-inner">
+                <div class="code-block-header">
+                    <span class="code-dot red"></span>
+                    <span class="code-dot yellow"></span>
+                    <span class="code-dot green"></span>
+                    <span class="code-filename">spawner.lua</span>
+                </div>
+                <div class="code-block-body">
+                    <code id="code-content-4"></code><span class="code-cursor" id="code-cursor-4">|</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
+
+    <!-- App Scripts -->
+    <script type="module" src="js/three-scene.js"></script>
+    <script src="js/i18n.js"></script>
+    <script src="js/app.js"></script>
+</body>
+
+</html>

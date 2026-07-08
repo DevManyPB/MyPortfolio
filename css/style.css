@@ -225,6 +225,10 @@ nav.sticky {
     flex-direction: column;
     align-items: center;
     margin-top: 8vh;
+    width: 100%;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
 }
 .hero-content > * { pointer-events: auto; }
 .hero-spacer { height: 14vh; }
@@ -260,15 +264,23 @@ nav.sticky {
 
 /* Hero Character NPC */
 .hero-character {
-    width: 80px;
-    height: 80px;
+    position: absolute;
+    right: -20px;
+    top: 55%;
+    transform: translateY(-50%);
+    width: 110px;
+    height: 110px;
     border-radius: 50%;
     overflow: hidden;
     border: 2px solid rgba(0, 243, 255, 0.5);
     box-shadow: 0 0 30px rgba(0, 243, 255, 0.25), 0 0 60px rgba(189, 0, 255, 0.15);
-    margin-bottom: 20px;
     animation: hero-float 4s ease-in-out infinite;
     transition: transform 0.4s;
+}
+.hero-character:hover {
+    transform: translateY(-50%) scale(1.05);
+    border-color: var(--neon-purple);
+    box-shadow: 0 0 40px rgba(189, 0, 255, 0.4), 0 0 80px rgba(0, 243, 255, 0.2);
 }
 .hero-character:hover {
     transform: scale(1.05);
@@ -1228,7 +1240,7 @@ body.modal-open .cursor-circle {
     .hero-spacer { height: 8vh; }
     .hero-title { font-size: 2.4rem; letter-spacing: 3px; }
     .hero-subtitle { font-size: 1.1rem; letter-spacing: 3px; min-height: 50px; padding: 0 20px; }
-    .hero-character { width: 64px; height: 64px; margin-bottom: 14px; }
+    .hero-character { width: 80px; height: 80px; right: -10px; top: 50%; }
     .hero-socials { flex-direction: column; gap: 12px; width: 100%; max-width: 300px; }
     .hero-socials a { justify-content: center; width: 100%; }
     .btn-primary { margin-top: 30px; }
@@ -1281,7 +1293,7 @@ body.modal-open .cursor-circle {
     .hero-title { font-size: 1.8rem; letter-spacing: 2px; }
     .hero-subtitle { font-size: 0.85rem; letter-spacing: 2px; min-height: 40px; padding: 0 16px; }
     .hero-spacer { height: 5vh; }
-    .hero-character { width: 56px; height: 56px; margin-bottom: 10px; }
+    .hero-character { width: 64px; height: 64px; right: -5px; top: 45%; }
     .btn-primary { padding: 12px 28px; font-size: 0.85rem; }
 
     section { padding: 50px 5%; }
@@ -1329,7 +1341,7 @@ body.modal-open .cursor-circle {
 @media (max-width: 360px) {
     .hero-title { font-size: 1.5rem; }
     .hero-subtitle { font-size: 0.75rem; min-height: 36px; }
-    .hero-character { width: 60px; height: 60px; margin-bottom: 8px; }
+    .hero-character { width: 50px; height: 50px; right: 0; top: 40%; }
     .section-title { font-size: 1.3rem; margin-bottom: 20px; }
     .nav-links { padding: 24px 18px; }
     .nav-links a { font-size: 0.95rem; }

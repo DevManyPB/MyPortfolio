@@ -76,14 +76,14 @@ const placeholders = {
     en: { form_name: "Your Name", form_email: "Your Email", form_msg: "Your Message" }
 };
 
-let currentLang = 'es';
+let currentLang = 'en';
 const langBtn = document.getElementById('langToggle');
 
 updateLanguage();
 
 langBtn.addEventListener('click', () => {
-    currentLang = currentLang === 'es' ? 'en' : 'es';
-    langBtn.textContent = currentLang === 'es' ? 'EN' : 'ES';
+    currentLang = currentLang === 'en' ? 'es' : 'en';
+    langBtn.textContent = currentLang === 'en' ? 'ES' : 'EN';
     updateLanguage();
 });
 
